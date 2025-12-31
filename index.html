@@ -1,78 +1,229 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>SOON</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ADVisual Agency</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+/* RESET */
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+font-family:'Inter',sans-serif;
+background:#0b0b0f;
+color:#fff;
+overflow-x:hidden;
+-webkit-font-smoothing:antialiased;
+}
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Helvetica Neue", Helvetica, Arial, sans-serif;
-      background-color: #ffffff;
-      color: #000000;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 40px 20px 80px; /* spazio extra per il footer */
-      position: relative;
-    }
+/* MESH GRADIENT */
+.mesh{
+position:fixed;
+inset:0;
+z-index:-1;
+background:
+radial-gradient(circle at 20% 20%, #4da3ff55, transparent 40%),
+radial-gradient(circle at 80% 30%, #b44dff55, transparent 40%),
+radial-gradient(circle at 50% 80%, #7cff4d55, transparent 40%);
+animation:hue 20s infinite alternate;
+}
+@keyframes hue{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(35deg)}}
 
-    h1 {
-      font-size: 3.5rem;
-      font-weight: 700;
-      letter-spacing: -0.03rem;
-      line-height: 1.2;
-      margin-bottom: 12px;
-      text-transform: lowercase;
-    }
+/* HERO */
+.hero{
+height:auto;
+display:flex;
+align-items:flex-start;
+justify-content:center;
+text-align:center;
+padding:20px 20px 48px;
+backdrop-filter:blur(40px);
+overflow:hidden;
+}
+.hero div{
+opacity:0;
+transform:translateY(-20px);
+animation:heroFade 1s forwards;
+}
+@keyframes heroFade{0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
 
-    p {
-      font-size: 1.6rem;
-      font-weight: 500;
-      color: #555;
-    }
+.hero h1{
+font-size:clamp(2.4rem,8vw,4rem);
+font-weight:800;
+line-height:1.1;
+margin-top:0;
+text-shadow:0 0 40px #4da3ff;
+}
+.hero span{
+background:linear-gradient(90deg,#4da3ff,#b44dff,#7cff4d);
+-webkit-background-clip:text;
+color:transparent;
+animation:gradient 5s linear infinite;
+}
+@keyframes gradient{0%{background-position:0%}100%{background-position:200%}}
+.hero p{margin-top:14px;font-size:1.05rem;opacity:.9;}
 
-    footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background-color: #ffffff;
-      color: #999;
-      font-size: 0.9rem;
-      padding: 12px 0;
-      text-align: center;
-      box-shadow: 0 -1px 6px rgba(0,0,0,0.05);
-      user-select: none;
-    }
+/* PICCOLO SPAZIO SOPRA HERO SU MOBILE */
+@media(max-width:768px){
+  .hero{padding-top:60px;}
+}
 
-    @media (max-width: 600px) {
-      h1 {
-        font-size: 2.8rem;
-      }
+/* SEZIONI */
+section{padding:72px 20px;}
 
-      p {
-        font-size: 1rem;
-      }
-    }
-  </style>
+/* GLASS */
+.glass{
+background:linear-gradient(135deg,#ffffff10,#ffffff05);
+backdrop-filter:blur(20px);
+border:1px solid #ffffff15;
+border-radius:22px;
+padding:32px 24px;
+box-shadow:0 24px 60px #00000099;
+}
+
+/* CAPITOLO */
+.chapter{
+font-size:clamp(2.2rem,7vw,3.5rem);
+font-weight:800;
+margin-bottom:36px;
+background:linear-gradient(90deg,#4da3ff,#b44dff);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+/* SERVICES */
+.services{display:grid;grid-template-columns:1fr;gap:28px;}
+.service h3{font-size:1.7rem;margin-bottom:12px;text-shadow:0 0 20px #4da3ff55;}
+.service p{font-size:1rem;line-height:1.6;}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:1fr;gap:32px;text-align:center;margin-top:32px;}
+.stat h3{font-size:clamp(2.5rem,9vw,3.2rem);color:#4da3ff;text-shadow:0 0 40px #4da3ff;}
+
+/* PROVE */
+.prove-btn{
+display:block;margin:48px auto 0;padding:16px 36px;border-radius:50px;border:none;font-size:1.05rem;
+background:linear-gradient(135deg,#4da3ff,#b44dff);color:#fff;cursor:pointer;box-shadow:0 0 30px #4da3ff;
+}
+.prove{display:none;margin-top:32px;grid-template-columns:1fr;gap:18px;}
+.prove img{width:100%;border-radius:18px;box-shadow:0 20px 50px #000000aa;}
+
+/* PORTFOLIO */
+.portfolio{display:grid;grid-template-columns:1fr;gap:28px;}
+iframe{width:100%;height:200px;border-radius:18px;box-shadow:0 20px 60px #000000aa;}
+
+/* CONTACT */
+.contact{text-align:center;}
+.contact a{
+display:inline-block;margin-top:28px;padding:18px 42px;border-radius:50px;
+background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;font-size:1.1rem;text-decoration:none;
+box-shadow:0 0 30px #25d366aa;
+}
+
+/* FOOTER */
+footer{padding:32px 20px;text-align:center;opacity:.6;font-size:.9rem;}
+
+/* DESKTOP */
+@media(min-width:900px){
+section{padding:100px 10%}
+.services{grid-template-columns:repeat(2,1fr)}
+.stats{grid-template-columns:repeat(2,1fr)}
+.portfolio{grid-template-columns:repeat(2,1fr)}
+.prove{grid-template-columns:repeat(2,1fr)}
+}
+</style>
 </head>
 <body>
 
-  <h1>soon</h1>
-  <p>ADVisual</p>
+<div class="mesh"></div>
 
-  <footer>
-    © 2025 ADVisual Agency. Tutti i diritti riservati.
-  </footer>
+<!-- HERO -->
+<div class="hero">
+  <div>
+    <h1>ADVisual <span>Agency</span></h1>
+    <p><strong>ADVisual do it better.</strong></p>
+    <p>ADVisual nasce nel 2025 per trasformare visibilità in risultati concreti.</p>
+  </div>
+</div>
+
+<!-- COSA OFFRIAMO -->
+<section>
+<h2 class="chapter">Cosa offriamo</h2>
+<div class="services glass">
+<div class="service">
+<h3>Gestione Social</h3>
+<p>Strategia, contenuti, crescita organica, ADV e analisi dati.</p>
+</div>
+<div class="service">
+<h3>Web Menu</h3>
+<p>Menu digitali moderni, interattivi e ad alta conversione.</p>
+</div>
+</div>
+</section>
+
+<!-- STATS -->
+<section>
+<div class="glass">
+<h2>Leggere i grafici è tutto.</h2>
+<div class="stats">
+<div class="stat"><h3 class="counter" data-target="2.7">+0 mln</h3><p>Visualizzazioni al mese</p></div>
+<div class="stat"><h3 class="counter" data-target="95">+0 mila</h3><p>Interazioni al mese</p></div>
+</div>
+<button class="prove-btn" onclick="toggleProve()">Non ci credi?</button>
+<div class="prove" id="prove">
+<img src="https://cdn.discordapp.com/attachments/1391314977838858321/1455837488689184778/415B5BCF-D428-4CD2-879E-A6F30BE5284B.png">
+</div>
+</div>
+</section>
+
+<!-- PORTFOLIO -->
+<section>
+<h2 class="chapter">I nostri Web Menu</h2>
+<div class="portfolio">
+<iframe src="https://player.vimeo.com/video/123456789"></iframe>
+<iframe src="https://player.vimeo.com/video/987654321"></iframe>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact glass">
+<h2>Contattami</h2>
+<p>Porta il tuo brand al livello successivo.</p>
+<a href="https://wa.me/393333333333?text=Salve,%20sono%20[Nome%20cliente]%20di%20[nome%20locale],%20sarei%20interessato%20a%20uno%20dei%20tuoi%20servizi.">Scrivici su WhatsApp</a>
+</section>
+
+<footer>© 2025 ADVisual Agency</footer>
+
+<script>
+// COUNTER ON SCROLL
+const counters=document.querySelectorAll('.counter');
+let started=false;
+window.addEventListener('scroll',()=>{
+const stats=document.querySelector('.stats');
+if(!started && stats.getBoundingClientRect().top < window.innerHeight-100){
+started=true;
+counters.forEach(counter=>{
+let target=parseFloat(counter.dataset.target);
+let count=0;
+let step=target/40;
+let interval=setInterval(()=>{
+count+=step;
+if(count>=target){count=target;clearInterval(interval);}
+counter.innerText = counter.innerText.includes('mln')
+? `+${count.toFixed(1)} mln`
+: `+${Math.floor(count)} mila`;
+},40);
+});
+}
+});
+
+// PROVE
+function toggleProve(){
+const p=document.getElementById('prove');
+p.style.display = p.style.display === "grid" ? "none" : "grid";
+}
+</script>
 
 </body>
 </html>
