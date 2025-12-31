@@ -6,7 +6,6 @@
 <title>ADVisual Agency</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-/* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -16,8 +15,6 @@ color:#fff;
 overflow-x:hidden;
 -webkit-font-smoothing:antialiased;
 }
-
-/* MESH GRADIENT */
 .mesh{
 position:fixed;
 inset:0;
@@ -29,131 +26,40 @@ radial-gradient(circle at 50% 80%, #7cff4d55, transparent 40%);
 animation:hue 20s infinite alternate;
 }
 @keyframes hue{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(35deg)}}
-
-/* ANIMAZIONI GENERALI */
-.fade-slide{
-opacity:0;
-transform:translateY(20px);
-transition:all 0.8s ease-out;
-}
-.fade-slide.show{
-opacity:1;
-transform:translateY(0);
-}
-
-/* HERO */
-.hero{
-height:auto;
-display:flex;
-align-items:flex-start;
-justify-content:center;
-text-align:center;
-padding:20px 20px 48px;
-backdrop-filter:blur(40px);
-overflow:hidden;
-}
-.hero div{
-opacity:0;
-transform:translateY(-20px);
-animation:heroFade 1s forwards;
-}
+.fade-slide{opacity:0;transform:translateY(20px);transition:all 0.8s ease-out;}
+.fade-slide.show{opacity:1;transform:translateY(0);}
+.hero{height:auto;display:flex;align-items:flex-start;justify-content:center;text-align:center;padding:20px 20px 48px;backdrop-filter:blur(40px);overflow:hidden;}
+.hero div{opacity:0;transform:translateY(-20px);animation:heroFade 1s forwards;}
 @keyframes heroFade{0%{opacity:0;transform:translateY(-20px);}100%{opacity:1;transform:translateY(0);}}
-
-.hero h1{
-font-size:clamp(2.4rem,8vw,4rem);
-font-weight:800;
-line-height:1.1;
-margin-top:0;
-text-shadow:0 0 40px #4da3ff;
-}
-.hero span{
-background:linear-gradient(90deg,#4da3ff,#b44dff,#7cff4d);
--webkit-background-clip:text;
-color:transparent;
-animation:gradient 5s linear infinite;
-}
+.hero h1{font-size:clamp(2.4rem,8vw,4rem);font-weight:800;line-height:1.1;margin-top:0;text-shadow:0 0 40px #4da3ff;}
+.hero span{background:linear-gradient(90deg,#4da3ff,#b44dff,#7cff4d);-webkit-background-clip:text;color:transparent;animation:gradient 5s linear infinite;}
 @keyframes gradient{0%{background-position:0%}100%{background-position:200%}}
 .hero p{margin-top:14px;font-size:1.05rem;opacity:.9;}
-
-/* PICCOLO SPAZIO SOPRA HERO SU MOBILE */
-@media(max-width:768px){
-  .hero{padding-top:60px;}
-}
-
-/* SEZIONI */
+@media(max-width:768px){.hero{padding-top:60px;}}
 section{padding:72px 20px;}
-
-/* GLASS */
-.glass{
-background:linear-gradient(135deg,#ffffff10,#ffffff05);
-backdrop-filter:blur(20px);
-border:1px solid #ffffff15;
-border-radius:22px;
-padding:32px 24px;
-box-shadow:0 24px 60px #00000099;
-}
-
-/* CAPITOLO */
-.chapter{
-font-size:clamp(2.2rem,7vw,3.5rem);
-font-weight:800;
-margin-bottom:36px;
-background:linear-gradient(90deg,#4da3ff,#b44dff);
--webkit-background-clip:text;
-color:transparent;
-}
-
-/* SERVICES */
+.glass{background:linear-gradient(135deg,#ffffff10,#ffffff05);backdrop-filter:blur(20px);border:1px solid #ffffff15;border-radius:22px;padding:32px 24px;box-shadow:0 24px 60px #00000099;}
+.chapter{font-size:clamp(2.2rem,7vw,3.5rem);font-weight:800;margin-bottom:36px;background:linear-gradient(90deg,#4da3ff,#b44dff);-webkit-background-clip:text;color:transparent;}
 .services{display:grid;grid-template-columns:1fr;gap:28px;}
 .service h3{font-size:1.7rem;margin-bottom:12px;text-shadow:0 0 20px #4da3ff55;}
 .service p{font-size:1rem;line-height:1.6;}
-
-/* STATS */
 .stats{display:grid;grid-template-columns:1fr;gap:32px;text-align:center;margin-top:32px;}
-.stat h3{font-size:clamp(2.5rem,9vw,3.2rem);color:#4da3ff;text-shadow:0 0 40px #4da3ff;display:inline-block;transition:transform 0.2s;}
-
-/* PROVE */
-.prove-btn{
-display:block;margin:48px auto 0;padding:16px 36px;border-radius:50px;border:none;font-size:1.05rem;
-background:linear-gradient(135deg,#4da3ff,#b44dff);color:#fff;cursor:pointer;box-shadow:0 0 30px #4da3ff;
-transition:transform 0.3s;
-}
+.stat h3{font-size:clamp(2.5rem,9vw,3.2rem);color:#4da3ff;text-shadow:0 0 40px #4da3ff;display:inline-block;transition:text-shadow 0.2s;}
+.prove-btn{display:block;margin:48px auto 0;padding:16px 36px;border-radius:50px;border:none;font-size:1.05rem;background:linear-gradient(135deg,#4da3ff,#b44dff);color:#fff;cursor:pointer;box-shadow:0 0 30px #4da3ff;transition:transform 0.3s;}
 .prove-btn:hover{transform:scale(1.05);}
 .prove{display:none;margin-top:32px;grid-template-columns:1fr;gap:18px;}
 .prove img{width:100%;border-radius:18px;box-shadow:0 20px 50px #000000aa;}
-
-/* PORTFOLIO */
 .portfolio{display:grid;grid-template-columns:1fr;gap:28px;}
 iframe{width:100%;height:200px;border-radius:18px;box-shadow:0 20px 60px #000000aa;}
-
-/* CONTACT */
 .contact{text-align:center;}
-.contact a{
-display:inline-block;margin-top:28px;padding:18px 42px;border-radius:50px;
-background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;font-size:1.1rem;text-decoration:none;
-box-shadow:0 0 30px #25d366aa;
-transition:transform 0.3s;
-}
+.contact a{display:inline-block;margin-top:28px;padding:18px 42px;border-radius:50px;background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;font-size:1.1rem;text-decoration:none;box-shadow:0 0 30px #25d366aa;transition:transform 0.3s;}
 .contact a:hover{transform:scale(1.05);}
-
-/* FOOTER */
 footer{padding:32px 20px;text-align:center;opacity:.6;font-size:.9rem;}
-
-/* DESKTOP */
-@media(min-width:900px){
-section{padding:100px 10%}
-.services{grid-template-columns:repeat(2,1fr)}
-.stats{grid-template-columns:repeat(2,1fr)}
-.portfolio{grid-template-columns:repeat(2,1fr)}
-.prove{grid-template-columns:repeat(2,1fr)}
-}
+@media(min-width:900px){section{padding:100px 10%}.services{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.portfolio{grid-template-columns:repeat(2,1fr)}.prove{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
 <body>
-
 <div class="mesh"></div>
 
-<!-- HERO -->
 <div class="hero">
   <div class="fade-slide">
     <h1>ADVisual <span>Agency</span></h1>
@@ -162,7 +68,6 @@ section{padding:100px 10%}
   </div>
 </div>
 
-<!-- COSA OFFRIAMO -->
 <section class="fade-slide">
 <h2 class="chapter">Cosa offriamo</h2>
 <div class="services glass fade-slide">
@@ -177,7 +82,6 @@ section{padding:100px 10%}
 </div>
 </section>
 
-<!-- STATS -->
 <section class="fade-slide">
 <div class="glass fade-slide">
 <h2>Leggere i grafici è tutto.</h2>
@@ -192,7 +96,6 @@ section{padding:100px 10%}
 </div>
 </section>
 
-<!-- PORTFOLIO -->
 <section class="fade-slide">
 <h2 class="chapter">I nostri Web Menu</h2>
 <div class="portfolio fade-slide">
@@ -200,7 +103,6 @@ section{padding:100px 10%}
 </div>
 </section>
 
-<!-- CONTACT -->
 <section class="contact glass fade-slide">
 <h2>Contattami</h2>
 <p>Porta il tuo brand al livello successivo.</p>
@@ -210,10 +112,10 @@ section{padding:100px 10%}
 <footer class="fade-slide">© 2025 ADVisual Agency</footer>
 
 <script>
-// SCROLL ALLA CIMA ALLA RICARICA
-window.onbeforeunload = function () { window.scrollTo(0, 0); };
+// Forza scroll top al load
+window.addEventListener('load', () => { setTimeout(()=>{window.scrollTo(0,0);},10); });
 
-// COUNTER ON SCROLL CON MICRO-ANIMAZIONE
+// COUNTER senza spostare layout (uso ombra al posto di scale)
 const counters=document.querySelectorAll('.counter');
 let started=false;
 window.addEventListener('scroll',()=>{
@@ -230,9 +132,9 @@ if(count>=target){count=target;clearInterval(interval);}
 counter.innerText = counter.innerText.includes('mln')
 ? `+${count.toFixed(1)} mln`
 : `+${Math.floor(count)} mila`;
-// micro-rimbalzo
-counter.style.transform='scale(1.2)';
-setTimeout(()=>{counter.style.transform='scale(1)';},100);
+// micro-bagliore senza reflow
+counter.style.textShadow = "0 0 20px #4da3ff";
+setTimeout(()=>{counter.style.textShadow="";},100);
 },40);
 });
 }
@@ -244,26 +146,17 @@ const p=document.getElementById('prove');
 p.style.display = p.style.display === "grid" ? "none" : "grid";
 }
 
-// ANIMAZIONE SEZIONI ON SCROLL
+// fade-slide scroll
 const faders=document.querySelectorAll('.fade-slide');
 const appearOptions={threshold:0.2,rootMargin:"0px 0px -50px 0px"};
-const appearOnScroll=new IntersectionObserver(function(entries,appearOnScroll){
+const appearOnScroll=new IntersectionObserver(function(entries,observer){
 entries.forEach(entry=>{
 if(!entry.isIntersecting){return;}
 entry.target.classList.add('show');
-appearOnScroll.unobserve(entry.target);
+observer.unobserve(entry.target);
 });
 },appearOptions);
 faders.forEach(fader=>{appearOnScroll.observe(fader);});
-</script>
-<script>
-// Forza scroll all'inizio quando la pagina è completamente caricata
-window.addEventListener('load', () => {
-    // piccolo delay per sicurezza
-    setTimeout(() => {
-        window.scrollTo(0, 0);
-    }, 10);
-});
 </script>
 </body>
 </html>
