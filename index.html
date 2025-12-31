@@ -201,7 +201,7 @@ section{padding:100px 10%}
 <footer class="fade-slide">© 2025 ADVisual Agency</footer>
 
 <script>
-// SCROLL ALLA CIMA
+// SCROLL TOP
 window.addEventListener('load',()=>{setTimeout(()=>{window.scrollTo(0,0);},10);});
 
 // COUNTER
@@ -221,7 +221,7 @@ setTimeout(()=>{counter.style.textShadow="";},100);
 });
 }
 
-// Observer per animazioni e counters
+// Observer animazioni e counters
 const faders=document.querySelectorAll('.fade-slide');
 const appearOptions={threshold:0.2,rootMargin:"0px 0px -50px 0px"};
 const appearOnScroll=new IntersectionObserver(function(entries,observer){
@@ -245,7 +245,7 @@ function scrollToMenu(){
 document.getElementById('menu').scrollIntoView({behavior:'smooth'});
 }
 
-// MOBILE: mostra solo hero all'inizio
+// MOBILE: mostra solo hero inizialmente
 if(window.innerWidth <=768){
 document.body.classList.add('mobile-view');
 window.addEventListener('scroll',()=>{document.body.classList.remove('mobile-view');});
@@ -253,7 +253,16 @@ window.addEventListener('scroll',()=>{document.body.classList.remove('mobile-vie
 </script>
 <style>
 /* MOBILE HERO */
-body.mobile-view > *:not(.hero){display:none;}
+body.mobile-view section,
+body.mobile-view .services,
+body.mobile-view .stats,
+body.mobile-view .portfolio,
+body.mobile-view .contact,
+body.mobile-view footer {
+display:none;
+}
+/* MESH SEMPRE VISIBILE */
+.mesh{display:block !important;}
 </style>
 </body>
 </html>
