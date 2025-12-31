@@ -6,7 +6,6 @@
 <title>ADVisual Agency</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 <style>
-/* RESET */
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -83,6 +82,7 @@ border-bottom:3px solid #4da3ff;
 border-right:3px solid #4da3ff;
 transform:rotate(45deg);
 animation:arrowMove 1.2s infinite;
+cursor:pointer;
 }
 @keyframes arrowMove{
 0%{transform:rotate(45deg) translateY(0);}
@@ -149,12 +149,12 @@ section{padding:100px 10%}
     <h1>ADVisual <span>Agency</span></h1>
     <p><strong>ADVisual do it better.</strong></p>
     <p>ADVisual nasce nel 2025 per trasformare visibilità in risultati concreti.</p>
-    <div class="scroll-arrow"></div>
+    <div class="scroll-arrow" onclick="scrollToMenu()"></div>
   </div>
 </div>
 
 <!-- COSA OFFRIAMO -->
-<section class="fade-slide">
+<section id="menu" class="fade-slide">
 <h2 class="chapter">Cosa offriamo</h2>
 <div class="services glass fade-slide">
 <div class="service">
@@ -201,16 +201,12 @@ section{padding:100px 10%}
 <footer class="fade-slide">© 2025 ADVisual Agency</footer>
 
 <script>
-// Forza scroll top al load
-window.addEventListener('load', () => { setTimeout(()=>{window.scrollTo(0,0);},10); });
+// SCROLL ALLA CIMA
+window.addEventListener('load',()=>{setTimeout(()=>{window.scrollTo(0,0);},10);});
 
-// COUNTER senza far spostare layout
+// COUNTER
 const counters=document.querySelectorAll('.counter');
-let started=false;
-window.addEventListener('scroll',()=>{
-const stats=document.querySelector('.stats');
-if(!started && stats.getBoundingClientRect().top < window.innerHeight-100){
-started=true;
+function startCounters(){
 counters.forEach(counter=>{
 let target=parseFloat(counter.dataset.target);
 let count=0;
@@ -218,48 +214,46 @@ let step=target/40;
 let interval=setInterval(()=>{
 count+=step;
 if(count>=target){count=target;clearInterval(interval);}
-counter.innerText = counter.innerText.includes('mln')
-? `+${count.toFixed(1)} mln`
-: `+${Math.floor(count)} mila`;
-counter.style.textShadow = "0 0 20px #4da3ff";
+counter.innerText = counter.innerText.includes('mln') ? `+${count.toFixed(1)} mln` : `+${Math.floor(count)} mila`;
+counter.style.textShadow="0 0 20px #4da3ff";
 setTimeout(()=>{counter.style.textShadow="";},100);
 },40);
 });
 }
-});
 
-// PROVE
-function toggleProve(){
-const p=document.getElementById('prove');
-p.style.display = p.style.display === "grid" ? "none" : "grid";
-}
-
-// fade-slide scroll
+// Observer per animazioni e counters
 const faders=document.querySelectorAll('.fade-slide');
 const appearOptions={threshold:0.2,rootMargin:"0px 0px -50px 0px"};
 const appearOnScroll=new IntersectionObserver(function(entries,observer){
 entries.forEach(entry=>{
 if(!entry.isIntersecting){return;}
 entry.target.classList.add('show');
+if(entry.target.querySelectorAll('.counter').length>0){startCounters();}
 observer.unobserve(entry.target);
 });
 },appearOptions);
 faders.forEach(fader=>{appearOnScroll.observe(fader);});
 
+// PROVE
+function toggleProve(){
+const p=document.getElementById('prove');
+p.style.display = p.style.display==="grid"?"none":"grid";
+}
+
+// SCROLL FRECCIA
+function scrollToMenu(){
+document.getElementById('menu').scrollIntoView({behavior:'smooth'});
+}
+
 // MOBILE: mostra solo hero all'inizio
-if(window.innerWidth <= 768){
-  document.body.classList.add('mobile-view');
-  window.addEventListener('scroll', ()=>{
-    document.body.classList.remove('mobile-view');
-  });
+if(window.innerWidth <=768){
+document.body.classList.add('mobile-view');
+window.addEventListener('scroll',()=>{document.body.classList.remove('mobile-view');});
 }
 </script>
 <style>
-/* MOBILE: nasconde tutto tranne hero */
-body.mobile-view > *:not(.hero){
-  display:none;
-}
+/* MOBILE HERO */
+body.mobile-view > *:not(.hero){display:none;}
 </style>
-
 </body>
 </html>
