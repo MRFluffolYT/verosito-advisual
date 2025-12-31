@@ -138,14 +138,17 @@ section{padding:100px 10%}
 .prove{grid-template-columns:repeat(2,1fr)}
 }
 
-/* RIDUZIONE SPAZIO PER SOCIAL MANAGEMENT */
-.tight-section{
-  padding-top:24px;
-  padding-bottom:16px;
+/* MOBILE HERO */
+body.mobile-view section,
+body.mobile-view .services,
+body.mobile-view .stats,
+body.mobile-view .portfolio,
+body.mobile-view .contact,
+body.mobile-view footer {
+display:none;
 }
-.tight-section .chapter{
-  margin-bottom:16px;
-}
+/* MESH SEMPRE VISIBILE */
+.mesh{display:block !important;}
 </style>
 </head>
 <body>
@@ -177,8 +180,8 @@ section{padding:100px 10%}
 </div>
 </section>
 
-<!-- SOCIAL MANAGEMENT CON SPAZIO RIDOTTO -->
-<section class="fade-slide tight-section">
+<!-- SOCIAL MANAGEMENT -->
+<section class="fade-slide">
 <h2 class="chapter">Social Management</h2>
 </section>
 
@@ -265,18 +268,5 @@ document.body.classList.add('mobile-view');
 window.addEventListener('scroll',()=>{document.body.classList.remove('mobile-view');});
 }
 </script>
-<style>
-/* MOBILE HERO */
-body.mobile-view section,
-body.mobile-view .services,
-body.mobile-view .stats,
-body.mobile-view .portfolio,
-body.mobile-view .contact,
-body.mobile-view footer {
-display:none;
-}
-/* MESH SEMPRE VISIBILE */
-.mesh{display:block !important;}
-</style>
 </body>
 </html>
