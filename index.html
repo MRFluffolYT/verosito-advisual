@@ -13,7 +13,6 @@
 .hero{
   height:100vh; /* occupa tutto lo schermo */
   display:flex;
-  flex-direction:column;
   justify-content:center;
   align-items:center;
   text-align:center;
@@ -21,6 +20,14 @@
   position:relative;
 }
 
+.hero-content{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+}
+
+/* FRECCIA CENTRATA */
 .scroll-arrow{
   margin-top:40px;
   width:30px;
@@ -31,27 +38,25 @@
   animation:arrowMove 1.2s infinite;
 }
 
-/* Animazione freccia: su e giù */
+/* ANIMAZIONE FRECCIA SU E GIÙ */
 @keyframes arrowMove{
   0%{transform:rotate(45deg) translateY(0);}
   50%{transform:rotate(45deg) translateY(10px);}
   100%{transform:rotate(45deg) translateY(0);}
 }
 
-/* Nascondi tutto tranne hero su mobile inizialmente */
-body.mobile-view .fade-slide:not(.hero-content){
+/* NASCONDI IL RESTO DEL SITO SU MOBILE INIZIALMENTE */
+body.mobile-view > *:not(.hero){
   display:none;
 }
-
-/* Mostra tutto dopo scroll */
 </style>
 
 <script>
-// Rileva mobile e aggiunge classe al body
+// RILEVA MOBILE
 if(window.innerWidth <= 768){
   document.body.classList.add('mobile-view');
 
-  // Quando l'utente scrolla, mostra il resto del sito
+  // MOSTRA TUTTO AL PRIMO SCROLL
   window.addEventListener('scroll', ()=>{
     document.body.classList.remove('mobile-view');
   });
