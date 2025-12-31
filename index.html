@@ -16,7 +16,7 @@ overflow-x:hidden;
 -webkit-font-smoothing:antialiased;
 }
 
-/* MESH GRADIENT */
+/* Sfondo Mesh */
 .mesh{
 position:fixed;
 inset:0;
@@ -29,7 +29,7 @@ animation:hue 20s infinite alternate;
 }
 @keyframes hue{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(35deg)}}
 
-/* ANIMAZIONI GENERALI */
+/* Animazioni generali */
 .fade-slide{
 opacity:0;
 transform:translateY(20px);
@@ -40,7 +40,7 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* HERO */
+/* Hero */
 .hero{
 height:100vh;
 display:flex;
@@ -48,14 +48,7 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding:0 20px;
-position:relative;
 flex-direction:column;
-}
-.hero-content{
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
 }
 .hero h1{
 font-size:clamp(2.4rem,8vw,4rem);
@@ -73,7 +66,7 @@ animation:gradient 5s linear infinite;
 @keyframes gradient{0%{background-position:0%}100%{background-position:200%}}
 .hero p{margin-top:14px;font-size:1.05rem;opacity:.9;}
 
-/* FRECCIA SCROLL */
+/* Freccia scroll */
 .scroll-arrow{
 margin-top:40px;
 width:30px;
@@ -90,7 +83,7 @@ cursor:pointer;
 100%{transform:rotate(45deg) translateY(0);}
 }
 
-/* SEZIONI */
+/* Sezioni */
 section{padding:72px 20px;}
 .glass{
 background:linear-gradient(135deg,#ffffff10,#ffffff05);
@@ -138,7 +131,16 @@ section{padding:100px 10%}
 .prove{grid-template-columns:repeat(2,1fr)}
 }
 
-/* MOBILE HERO */
+/* Social Management spacing */
+.social-management{
+padding-top:32px;
+padding-bottom:32px;
+}
+.social-management .chapter{
+margin-bottom:24px;
+}
+
+/* Mobile hero only view */
 body.mobile-view section,
 body.mobile-view .services,
 body.mobile-view .stats,
@@ -147,8 +149,6 @@ body.mobile-view .contact,
 body.mobile-view footer {
 display:none;
 }
-/* MESH SEMPRE VISIBILE */
-.mesh{display:block !important;}
 </style>
 </head>
 <body>
@@ -181,7 +181,7 @@ display:none;
 </section>
 
 <!-- SOCIAL MANAGEMENT -->
-<section class="fade-slide">
+<section class="fade-slide social-management">
 <h2 class="chapter">Social Management</h2>
 </section>
 
@@ -218,10 +218,10 @@ display:none;
 <footer class="fade-slide">© 2025 ADVisual Agency</footer>
 
 <script>
-// SCROLL TOP
+// Scroll top on load
 window.addEventListener('load',()=>{setTimeout(()=>{window.scrollTo(0,0);},10);});
 
-// COUNTER
+// Counter
 const counters=document.querySelectorAll('.counter');
 function startCounters(){
 counters.forEach(counter=>{
@@ -232,13 +232,11 @@ let interval=setInterval(()=>{
 count+=step;
 if(count>=target){count=target;clearInterval(interval);}
 counter.innerText = counter.innerText.includes('mln') ? `+${count.toFixed(1)} mln` : `+${Math.floor(count)} mila`;
-counter.style.textShadow="0 0 20px #4da3ff";
-setTimeout(()=>{counter.style.textShadow="";},100);
 },40);
 });
 }
 
-// Observer animazioni e counters
+// Animate sections on scroll
 const faders=document.querySelectorAll('.fade-slide');
 const appearOptions={threshold:0.2,rootMargin:"0px 0px -50px 0px"};
 const appearOnScroll=new IntersectionObserver(function(entries,observer){
@@ -251,18 +249,18 @@ observer.unobserve(entry.target);
 },appearOptions);
 faders.forEach(fader=>{appearOnScroll.observe(fader);});
 
-// PROVE
+// Prove
 function toggleProve(){
 const p=document.getElementById('prove');
 p.style.display = p.style.display==="grid"?"none":"grid";
 }
 
-// SCROLL FRECCIA
+// Scroll freccia
 function scrollToMenu(){
 document.getElementById('menu').scrollIntoView({behavior:'smooth'});
 }
 
-// MOBILE: mostra solo hero inizialmente
+// Mobile hero only
 if(window.innerWidth <=768){
 document.body.classList.add('mobile-view');
 window.addEventListener('scroll',()=>{document.body.classList.remove('mobile-view');});
