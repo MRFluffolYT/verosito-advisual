@@ -211,6 +211,9 @@ section{padding:100px 10%}
 <footer class="fade-slide">© 2025 ADVisual Agency</footer>
 
 <script>
+// SCROLL ALLA CIMA ALLA RICARICA
+window.onbeforeunload = function () { window.scrollTo(0, 0); };
+
 // COUNTER ON SCROLL CON MICRO-ANIMAZIONE
 const counters=document.querySelectorAll('.counter');
 let started=false;
@@ -228,7 +231,7 @@ if(count>=target){count=target;clearInterval(interval);}
 counter.innerText = counter.innerText.includes('mln')
 ? `+${count.toFixed(1)} mln`
 : `+${Math.floor(count)} mila`;
-// Micro-rimbalzo
+// micro-rimbalzo
 counter.style.transform='scale(1.2)';
 setTimeout(()=>{counter.style.transform='scale(1)';},100);
 },40);
