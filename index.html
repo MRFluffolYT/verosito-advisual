@@ -30,6 +30,17 @@ animation:hue 20s infinite alternate;
 }
 @keyframes hue{0%{filter:hue-rotate(0deg)}100%{filter:hue-rotate(35deg)}}
 
+/* ANIMAZIONI GENERALI */
+.fade-slide{
+opacity:0;
+transform:translateY(20px);
+transition:all 0.8s ease-out;
+}
+.fade-slide.show{
+opacity:1;
+transform:translateY(0);
+}
+
 /* HERO */
 .hero{
 height:auto;
@@ -99,13 +110,15 @@ color:transparent;
 
 /* STATS */
 .stats{display:grid;grid-template-columns:1fr;gap:32px;text-align:center;margin-top:32px;}
-.stat h3{font-size:clamp(2.5rem,9vw,3.2rem);color:#4da3ff;text-shadow:0 0 40px #4da3ff;}
+.stat h3{font-size:clamp(2.5rem,9vw,3.2rem);color:#4da3ff;text-shadow:0 0 40px #4da3ff;display:inline-block;transition:transform 0.2s;}
 
 /* PROVE */
 .prove-btn{
 display:block;margin:48px auto 0;padding:16px 36px;border-radius:50px;border:none;font-size:1.05rem;
 background:linear-gradient(135deg,#4da3ff,#b44dff);color:#fff;cursor:pointer;box-shadow:0 0 30px #4da3ff;
+transition:transform 0.3s;
 }
+.prove-btn:hover{transform:scale(1.05);}
 .prove{display:none;margin-top:32px;grid-template-columns:1fr;gap:18px;}
 .prove img{width:100%;border-radius:18px;box-shadow:0 20px 50px #000000aa;}
 
@@ -119,7 +132,9 @@ iframe{width:100%;height:200px;border-radius:18px;box-shadow:0 20px 60px #000000
 display:inline-block;margin-top:28px;padding:18px 42px;border-radius:50px;
 background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;font-size:1.1rem;text-decoration:none;
 box-shadow:0 0 30px #25d366aa;
+transition:transform 0.3s;
 }
+.contact a:hover{transform:scale(1.05);}
 
 /* FOOTER */
 footer{padding:32px 20px;text-align:center;opacity:.6;font-size:.9rem;}
@@ -140,7 +155,7 @@ section{padding:100px 10%}
 
 <!-- HERO -->
 <div class="hero">
-  <div>
+  <div class="fade-slide">
     <h1>ADVisual <span>Agency</span></h1>
     <p><strong>ADVisual do it better.</strong></p>
     <p>ADVisual nasce nel 2025 per trasformare visibilità in risultati concreti.</p>
@@ -148,9 +163,9 @@ section{padding:100px 10%}
 </div>
 
 <!-- COSA OFFRIAMO -->
-<section>
+<section class="fade-slide">
 <h2 class="chapter">Cosa offriamo</h2>
-<div class="services glass">
+<div class="services glass fade-slide">
 <div class="service">
 <h3>Gestione Social</h3>
 <p>Strategia, contenuti, crescita organica, ADV e analisi dati.</p>
@@ -163,8 +178,8 @@ section{padding:100px 10%}
 </section>
 
 <!-- STATS -->
-<section>
-<div class="glass">
+<section class="fade-slide">
+<div class="glass fade-slide">
 <h2>Leggere i grafici è tutto.</h2>
 <div class="stats">
 <div class="stat"><h3 class="counter" data-target="2.7">+0 mln</h3><p>Visualizzazioni al mese</p></div>
@@ -172,31 +187,31 @@ section{padding:100px 10%}
 </div>
 <button class="prove-btn" onclick="toggleProve()">Non ci credi?</button>
 <div class="prove" id="prove">
-<img src="https://imgur.com/a/KA9g6xr">
+<img src="https://i.imgur.com/KA9g6xr.png" alt="Prova ADVisual">
 </div>
 </div>
 </section>
 
 <!-- PORTFOLIO -->
-<section>
+<section class="fade-slide">
 <h2 class="chapter">I nostri Web Menu</h2>
-<div class="portfolio">
+<div class="portfolio fade-slide">
 <iframe src="https://player.vimeo.com/video/123456789"></iframe>
 <iframe src="https://player.vimeo.com/video/987654321"></iframe>
 </div>
 </section>
 
 <!-- CONTACT -->
-<section class="contact glass">
+<section class="contact glass fade-slide">
 <h2>Contattami</h2>
 <p>Porta il tuo brand al livello successivo.</p>
 <a href="https://wa.me/393333333333?text=Salve,%20sono%20[Nome%20cliente]%20di%20[nome%20locale],%20sarei%20interessato%20a%20uno%20dei%20tuoi%20servizi.">Scrivici su WhatsApp</a>
 </section>
 
-<footer>© 2025 ADVisual Agency</footer>
+<footer class="fade-slide">© 2025 ADVisual Agency</footer>
 
 <script>
-// COUNTER ON SCROLL
+// COUNTER ON SCROLL CON MICRO-ANIMAZIONE
 const counters=document.querySelectorAll('.counter');
 let started=false;
 window.addEventListener('scroll',()=>{
@@ -213,6 +228,9 @@ if(count>=target){count=target;clearInterval(interval);}
 counter.innerText = counter.innerText.includes('mln')
 ? `+${count.toFixed(1)} mln`
 : `+${Math.floor(count)} mila`;
+// Micro-rimbalzo
+counter.style.transform='scale(1.2)';
+setTimeout(()=>{counter.style.transform='scale(1)';},100);
 },40);
 });
 }
@@ -223,6 +241,18 @@ function toggleProve(){
 const p=document.getElementById('prove');
 p.style.display = p.style.display === "grid" ? "none" : "grid";
 }
+
+// ANIMAZIONE SEZIONI ON SCROLL
+const faders=document.querySelectorAll('.fade-slide');
+const appearOptions={threshold:0.2,rootMargin:"0px 0px -50px 0px"};
+const appearOnScroll=new IntersectionObserver(function(entries,appearOnScroll){
+entries.forEach(entry=>{
+if(!entry.isIntersecting){return;}
+entry.target.classList.add('show');
+appearOnScroll.unobserve(entry.target);
+});
+},appearOptions);
+faders.forEach(fader=>{appearOnScroll.observe(fader);});
 </script>
 
 </body>
