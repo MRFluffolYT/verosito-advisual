@@ -256,6 +256,14 @@ appearOnScroll.unobserve(entry.target);
 },appearOptions);
 faders.forEach(fader=>{appearOnScroll.observe(fader);});
 </script>
-
+<script>
+// Forza scroll all'inizio quando la pagina è completamente caricata
+window.addEventListener('load', () => {
+    // piccolo delay per sicurezza
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 10);
+});
+</script>
 </body>
 </html>
